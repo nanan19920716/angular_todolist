@@ -1,2 +1,2 @@
 # angular_todolist
-Throught  angular  finish  a todolist
+- 提出一些建议
