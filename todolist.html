@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="css/todolist.css">
+	<script src="js/angular.js"></script>	
+</head>
+<body>
+<div class="box">
+	<h2>我的备忘录</h2>
+	<br/>
+	<div ng-controller="todoCtrl">
+		<div class="menu">
+			<input type="text" placeholder="添加" ng-model="val">
+			<button class="btn" ng-click="add()">ADD</button>
+		</div>
+		<ul>
+			<li ng-repeat="data in arr track by $index">
+				<span>{{data}}</span>
+			</li>
+		</ul>
+	<br/>
+	<button class="del" ng-click="del($index)" ng-show="arr.length>0">删除记录</button>
+	</div>
+</div>
+<script>
+//创建angular对象
+	var app=angular.module("app",[]);
+	//添加控制器执行操作
+	app.controller("todoCtrl",["$scope",function($scope){
+		//通过$scope创建一个数组用来存放input的val
+		$scope.arr=[];
+		//再点击的情况下得到input的值
+		$scope.add=function(){
+			if(!$scope.val) return;
+			//拿到input输入的val push进数组
+			$scope.arr.push($scope.val);
+			// console.log($scope.arr);
+			$scope.val='';
+		}
+        $scope.del=function(index){
+        	$scope.arr.splice(index,1);
+        }
+	}]);
+</script>
+</body>
+</html>
